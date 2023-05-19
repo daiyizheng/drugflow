@@ -8,3 +8,4 @@ Email            :387942239@qq.com
 Version          :1.0
 '''
 
+from __future__ import print_function, absolute_import, annotations
