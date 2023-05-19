@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 '''
-Filename         :__version__.py
+Filename         :gnina.py
 Description      :
-Time             :2023/05/19 13:27:23
+Time             :2023/05/19 13:58:50
 Author           :daiyizheng
 Email            :387942239@qq.com
 Version          :1.0
 '''
 
-__version__ = "0.0.1"
