@@ -12,7 +12,12 @@ from typing import Optional
 import tempfile, shutil, logging, time
 import contextlib
 
-logger = logging.getLogger(__file__)
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem.rdchem import Mol
+
+
+logger = logging.getLogger(__name__)
 # logging
 separator = ">" * 30
 line = "-" * 30
@@ -34,3 +39,15 @@ def timing(msg: str):#计算时间差
   yield
   toc = time.time()
   logger.info('Finished %s in %.3f seconds', msg, toc - tic)
+  
+
+def mol_conformers(mol:Mol):
+  mol.RemoveAllConformers()
+  ps = AllChem.ETKDGv2()
+  id = AllChem.EmbedMolecule(mol, ps) # 生成3维几何构象
+  if id == -1:
+    logger.info('rdkit pos could not be generated without using random pos. using random pos now.')
+    ps.useRandomCoords = True
+    AllChem.EmbedMolecule(mol, ps)
+    AllChem.MMFFOptimizeMolecule(mol, confId=0)
+  return mol
