@@ -17,10 +17,9 @@ logger = logging.getLogger(__name__)
 
 
 class PdbBind(DockingData):
-    def __init__(self, path) -> None:
+    def __init__(self, path, **kwargs) -> None:
         self.path = path
         super(PdbBind, self).__init__()
-        self.load_data(path)
+        self.load_data(path, **kwargs)
     
 
-        
